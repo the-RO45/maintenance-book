@@ -1,0 +1,30 @@
+<template>
+    <lightning-card>
+
+        <div class="slds-m-around_medium">
+            <template if:true={MRList}>
+                <template for:each={MRList} for:item="MR">
+                    <div class="card slds-m-around_medium slds-p-around_medium"  key={MR.id} >
+                        <p><span><strong>Id:</strong></span> {MR.Name}</p>
+                        <p><span><strong>Category:</strong></span> {MR.Category__c}</p>
+                        <p><span><strong>Description:</strong></span> {MR.Description__c}</p>
+                        <p><span><strong>Amount Spent:</strong></span> Rs.{MR.Amount_Spent__c}</p>
+                        <p><span><strong>Assigned Vendor:</strong></span> {MR.Assigned_Vendor__c}</p>
+                        <p><span><strong>Requested Date:</strong></span> {MR.Request_Date__c}</p>
+                        <p><span><strong>Priority:</strong></span> {MR.Priority__c}</p>
+                    </div>
+
+                </template>
+            </template>   
+
+
+            <template if:true={showNoRecordMsg}>
+                <div>
+                    {noRecordMsg}
+                </div>
+            </template>
+
+        </div>
+
+    </lightning-card>
+</template>

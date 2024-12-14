@@ -1,0 +1,21 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-gutters slds-m-around_medium">
+            <div class="slds-col slds-size_1-of-4">
+                <lightning-button  variant={PRBtnVariant} label="Resident" onclick={handleResident}></lightning-button>
+            </div>
+            <div class="slds-col slds-size_1-of-4">
+                <lightning-button variant={CDBtnVariant} label="Maintenance Request" onclick={handleMaintRequest}> </lightning-button>
+            </div>
+        </div>
+
+        <template if:true={showResidents}>
+            <c-admin_-residents-data-table-card></c-admin_-residents-data-table-card>
+        </template>
+
+        <template if:true={showMaintenanceRequests}>
+            
+        </template>
+
+    </lightning-card>
+</template>

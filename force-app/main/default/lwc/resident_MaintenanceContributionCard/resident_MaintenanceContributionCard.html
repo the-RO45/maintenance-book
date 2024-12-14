@@ -1,0 +1,133 @@
+<template>
+    <lightning-card>
+    <div class="slds-m-around_medium">
+        
+        <!--Toggle Buttons-->
+        <div class="slds-m-around_medium toggleButtons"> 
+            <lightning-layout horizontal-align="space">
+                <lightning-layout-item  class="slds-m-bottom_x-small">
+                    <lightning-input type="toggle" label="Regular Maintenance" name="input1" checked={maintenanceChecked}  onchange={maintToggleHandler}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item  class="slds-m-bottom_x-small ">
+                    <lightning-input type="toggle" label="Asset" name="input2" checked={assetChecked} onchange={assetTogglehandler}></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+
+        <template if:true={showRecords}>
+            <template for:each={MCList} for:item="MC">
+                <div class="card slds-m-around_medium slds-p-around_medium"  key={MC.id} >
+                    <div class="slds-p-around_small MCList">
+                        <p><span><strong>Name:</strong></span> {MC.Name}</p>
+                        <template if:true={isAsset}>
+                            <p><span><strong>Asset Name:</strong></span> {MC.Asset__r.Asset_Name__c}</p>
+                            <p><span><strong>Asset Price:</strong></span> Rs.{MC.Asset__r.Asset_Price__c}</p>
+                        </template>
+                        <template if:true={isMaintenance}>
+                            <p><span><strong>Maintenance Request:</strong></span> {MC.Maintenance_Request__r.Name}</p>
+                        </template>
+                        <p><span><strong>Total Amount Paid by you:</strong></span> Rs.{MC.Amount__c}</p>
+                        <div class="slds-grid slds-gutters slds-m-top_small">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="receivedAmount">
+                                    <p >Amount Received</p>
+                                    <p>Rs.{MC.Amount_Received__c}</p>
+                                </div>    
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="pendingAmount">
+                                    <p>Amount Pending</p>
+                                    <p>Rs.{MC.Amount_Pending__c}</p>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                    <template if:true={MC.Contributions__r}>
+                        <!---
+                    <template for:each={MC.Contributions__r} for:item="contri">
+                        
+                        <div class="slds-m-around_small slds-p-left_small"  key={contri.id} >
+                            <p><span><strong>Id:</strong></span> {contri.Name}</p>
+                            <p><span><strong>Resident:</strong></span> {contri.Resident__r.Name}</p>
+                            <p><span><strong>Contribution Amount:</strong></span> Rs.{contri.Amount__c}</p>
+                            <p><span><strong>Payment Status:</strong></span> {contri.Payment_Status__c}</p>
+                            <p><span><strong>Contribution Date:</strong></span> {contri.Contribution_Date__c}</p>
+                            <hr>
+                        </div>
+
+                        -->
+                        <div class="slds-table_container">
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Resident Flat Number">Flat No.</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Resident">Resident</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Contribution Amount">Contri Amount</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Payment Status">Payment Status</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Id">Id</div>
+                                    </th>
+            
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Iterating over records using for:each -->
+                                <template for:each={MC.Contributions__r} for:item="contri">
+                                    <tr key={contri.id}>
+                                        <td>
+                                            <div class="slds-truncate wrap-content" title={contri.Resident__r.Flat_Number__c}>
+                                                {contri.Resident__r.Flat_Number__c}
+                                            </div>
+                                        </td>
+                                       
+                                        <td>
+                                            <div class="slds-truncate wrap-content" title={contri.Resident__r.Name}>
+                                                {contri.Resident__r.Name}
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <div class="slds-truncate wrap-content" title={contri.Amount__c}>
+                                                {contri.Amount__c}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-truncate wrap-content" title={contri.Payment_Status__c}>
+                                                {contri.Payment_Status__c}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-truncate wrap-content" title={contri.Name}>
+                                                {contri.Name}
+                                            </div>
+                                        </td>
+                                    
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                    </template>
+                <!-- </template> -->
+                </div>
+
+            </template>
+        </template>   
+
+
+        <template if:true={showNoRecordMsg}>
+            <div class="noRecordMsg">
+                {noRecordMsg}
+            </div>
+        </template>
+    </div>
+</lightning-card>
+</template>

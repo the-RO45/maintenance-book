@@ -1,0 +1,31 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-gutters slds-m-around_medium">
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-button  variant={PRBtnVariant} label="Pending Repayment" onclick={handleMaintCont}></lightning-button>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-button variant={CDBtnVariant} label="Contribution Dues" onclick={handleCont}> </lightning-button>
+            </div>
+        </div>
+
+        <div>
+            <template if:true={showMaintenanceContriRecords}>
+                <div>
+                    <c-resident_-Maintenance-contribution-card></c-resident_-Maintenance-contribution-card>
+                </div>
+
+            </template>
+
+            <template if:true={showContriRecords}>
+                <div>
+                    <c-resident_-contribution-card></c-resident_-contribution-card>
+                </div>
+
+            </template>
+
+        </div>
+
+    </lightning-card>
+    
+</template>

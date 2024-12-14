@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Maintenance_Request__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <inlineHelpText>Related Maintenance Request</inlineHelpText>
+    <label>Maintenance Request</label>
+    <referenceTo>Maintenance_Request__c</referenceTo>
+    <relationshipLabel>Maintenance Contributions</relationshipLabel>
+    <relationshipName>Maintenance_Contributions</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

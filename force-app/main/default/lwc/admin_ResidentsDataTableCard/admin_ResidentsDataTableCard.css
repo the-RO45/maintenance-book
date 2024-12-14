@@ -1,0 +1,12 @@
+.CustomRelatedMCCard{
+    background-color: #ffffff;
+    border: 1px solid #d8dde6;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 0.3s;
+}
+
+.CustomRelatedMCCard:hover {
+    background-color: #f3f6fb;
+    transform: scale(1.02);
+}

@@ -1,0 +1,113 @@
+<template>
+    <lightning-card title="Residents" icon-name="standard:account">
+        <div>
+            <lightning-button variant="brand" label="New" onclick={newRecord}></lightning-button>
+        </div>
+
+        <lightning-datatable
+            key-field="Id"
+            data={Residents}
+            columns={columns}
+            onrowaction={handleRowAction}>
+        </lightning-datatable>
+
+         <!-- Display New Resident Modal -->
+        <template if:true={showNewRecordModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                        <lightning-icon icon-name="utility:close"
+                           alternative-text="close"
+                           variant="inverse"
+                           size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                     </button>
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">New Resident</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-record-form
+                            object-api-name="Resident__c"
+                            fields={residentFields}
+                            onsuccess={handleEditSuccess}>
+                            <lightning-messages></lightning-messages>
+                           
+                        </lightning-record-form>
+                    </div>
+                
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+
+         <!-- Display Edit Resident Modal -->
+        <template if:true={isEditModalOpen}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Edit Resident</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-record-edit-form
+                            object-api-name="Resident__c"
+                            record-id={editRecordId}
+                            onsuccess={handleEditSuccess}>
+                            <lightning-messages></lightning-messages>
+                            <lightning-input-field field-name="Name"></lightning-input-field>
+                            <lightning-input-field field-name="Flat_Number__c"></lightning-input-field>
+                            <lightning-input-field field-name="Phone__c"></lightning-input-field>
+                            <lightning-input-field field-name="Active__c"></lightning-input-field>
+                        </lightning-record-edit-form>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button class="slds-m-around_small" variant="neutral" label="Cancel" onclick={closeEditModal}></lightning-button>
+                        <lightning-button class="slds-m-around_small" variant="brand" label="Update" onclick={saveEditRecord}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- Display Related Maintenance Contributions if any-->
+        <template if:true={relatedMaintContriVisible}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                        <lightning-icon icon-name="utility:close"
+                           alternative-text="close"
+                           variant="inverse"
+                           size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Related Maintenance Contributions</h2>
+                    </header>
+                   
+                    <lightning-card title="Related Maintenance Contributions" icon-name="standard:contact" >
+                        <div>
+                            <lightning-button variant="brand" label="New" onclick={newRecord}></lightning-button>
+                        </div>
+                        <template for:each={relatedMaintenanceContribution} for:item="MaintCont">
+                            <div key={MaintCont.Id} class="slds-box slds-box_x-small slds-m-bottom_small CustomRelatedMCCard">
+                                <p><strong>{MaintCont.Name}</strong></p>
+                                <p>Cost:Rs.{MaintCont.Amount__c}</p>
+                                <p>Pending Amount: Rs.{MaintCont.Amount_Pending__c}</p>
+                                <p>Received Amount: Rs.{MaintCont.Amount_Received__c}</p>
+                                
+                                <lightning-button-group>
+                                    <lightning-button variant="brand" label="Edit" onclick={handleEditContact} data-id={MaintCont.Id}></lightning-button>
+                                    <lightning-button variant="destructive" label="Delete" onclick={handleDeleteContact} data-id={MaintCont.Id}></lightning-button>
+                                </lightning-button-group>
+                            </div>
+                        </template>
+                    </lightning-card>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+    </lightning-card>
+
+    
+</template>

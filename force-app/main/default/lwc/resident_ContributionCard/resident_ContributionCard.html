@@ -1,0 +1,27 @@
+<template>
+    <lightning-card>
+
+        <div class="slds-m-around_medium">
+            <template if:true={ContriList}>
+                <template for:each={ContriList} for:item="Contri">
+                    <div class="card slds-m-around_medium slds-p-around_medium"  key={Contri.id} >
+                        <p><span><strong>Amount Due:</strong></span> Rs.{Contri.Amount__c}</p>
+                        <p><span><strong>For Maintenance:</strong></span> {Contri.Maintenance_Contribution__r.Name}</p>
+                        <p><span><strong>Receiver:</strong></span> {Contri.Maintenance_Contribution__r.Resident__r.Name}</p>
+                        <p><span><strong>Id:</strong></span> {Contri.Name}</p>
+                    </div>
+
+                </template>
+            </template>   
+
+
+            <template if:true={showNoRecordMsg}>
+                <div>
+                    {noRecordMsg}
+                </div>
+            </template>
+
+        </div>
+
+    </lightning-card>
+</template>

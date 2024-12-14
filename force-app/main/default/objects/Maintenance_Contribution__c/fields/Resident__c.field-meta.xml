@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resident__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <label>Resident who paid this contribution</label>
+    <referenceTo>Resident__c</referenceTo>
+    <relationshipLabel>Maintenance Contributions</relationshipLabel>
+    <relationshipName>Maintenance_Contributions</relationshipName>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,29 @@
+<template>
+    <lightning-card>
+        <div>
+            <p class="flatNumber slds-m-right_small slds-p-around_x-small">{residentApartment}</p>
+            <p class="apartment slds-m-right_small slds-p-around_x-small">{residentFlatNumber}</p>
+        </div>
+        <div class="slds-m-around_medium">
+            <p> Welcome {residentName}!</p>
+        </div>
+
+
+        <div class="slds-grid slds-gutters slds-wrap slds-m-around_x-small">
+            <!-- Section 1: Pending Dues-->
+            <div class="slds-col">
+                <div class="MRCard slds-p-around_small">
+                    <p>Pending Repayment (To be received by user)</p>
+                    <p>Rs.{totalRepayment}</p>
+                </div>
+            </div>
+            <!-- Section 2: Pending Contributions -->
+            <div class="slds-col">
+                <div class="PCCard slds-p-around_small">
+                    <p >Contributions Dues (To be paid by user)</p>  
+                    <p> Rs.{totalPendingContri}</p>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

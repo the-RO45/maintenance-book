@@ -1,0 +1,34 @@
+<template>
+    <lightning-card>
+        <div class="slds-m-around_medium">
+            <div>
+                <p class="heading"> Enter your Name and Phone below to get the details:</p>
+            </div>
+            <br/>
+            <div class="slds-m-around_medium">
+                <lightning-input
+                type="number" label="Enter your Flat Number:" value={flatNumber} required onchange={searchNameHandler}></lightning-input>
+            </div>
+            <div class="slds-m-around_medium">
+                <lightning-input
+                type="tel" label="Enter your Phone Number:" value={phoneNumber} required onchange={searchPhoneHandler}></lightning-input>
+            </div>
+            <br/>
+            <div>
+                <lightning-button class="slds-m-around_medium" label="Search" variant="brand" disabled={disableButton} onclick={searchHandler}></lightning-button>
+            </div>
+            <br/>
+
+
+            <template if:true={showMsg}>
+                
+                <div class="noRecordsMsg">
+                    {noRecordsFoundMsg}
+                </div>
+            
+               
+        </template>
+
+        </div>
+    </lightning-card>
+</template>

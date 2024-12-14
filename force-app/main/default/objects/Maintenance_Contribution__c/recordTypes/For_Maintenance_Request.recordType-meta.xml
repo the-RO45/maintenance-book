@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>For_Maintenance_Request</fullName>
+    <active>true</active>
+    <description>create maintenance contribution record for any maintenance request</description>
+    <label>For Maintenance Request</label>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Due</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Settled</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
